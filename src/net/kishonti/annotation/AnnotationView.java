@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 public class AnnotationView extends FrameLayout {
@@ -18,6 +20,11 @@ public class AnnotationView extends FrameLayout {
 	public AnnotationView(Context context) {
 		super(context);
 		setup(context, R.layout.annotation_default_content);
+	}
+
+	public AnnotationView(Context context, int contentLayout) {
+		super(context);
+		setup(context, contentLayout);
 	}
 
 	public AnnotationView(Context context, AttributeSet attrs) {
@@ -43,6 +50,8 @@ public class AnnotationView extends FrameLayout {
 		mContent = inflater.inflate(contentLayout, this);
 		this.setOnClickListener(null);
 		mContentRect = new Rect();
+		Animation anim = AnimationUtils.loadAnimation(c, R.anim.annotation_show);
+		this.setAnimation(anim);
 	}
 	
 	@Override
