@@ -53,7 +53,7 @@ public class AnnotationView extends FrameLayout {
 		Animation anim = AnimationUtils.loadAnimation(c, R.anim.annotation_show);
 		this.setAnimation(anim);
 	}
-	
+
 	@Override
 	protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -62,7 +62,7 @@ public class AnnotationView extends FrameLayout {
 			getPaddingTop(),
 			getMeasuredWidth() - getPaddingRight(),
 			getMeasuredHeight() - getPaddingBottom()
-		);		
+		);
 	}
 
 	@Override
@@ -74,16 +74,21 @@ public class AnnotationView extends FrameLayout {
 			return false;
 		}
 	}
-	
+
 	public View getContentView() {
 		return mContent;
 	}
-	
+
+	public void setContentView(View v) {
+		removeAllViews();
+		addView(v);
+	}
+
 	@Override
-	public void onLayout(boolean changed, int left, int top, int right, int bottom) {
+	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		this.offsetLeftAndRight((left-right)/2);
 		this.offsetTopAndBottom((top-bottom));
 	}
-	
+
 }
